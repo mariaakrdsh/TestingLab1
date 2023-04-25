@@ -97,29 +97,30 @@ class MainTest {
         assertEquals(0, stringLengthSort.compare(str3, str3));
     }
 
+    // Тест перевіряє, що головний метод коректно визначає відсортовані унікальні слова вхідної стрічки за довжиною
     @Test
     void testDistinctWordsSortedByLength() throws IOException {
         String input = "This is a test with some longer words, such as hippopotamus and antidisestablishmentarianism.";
         String expectedOutput = "a\nis\nas\nand\nThis\ntest\nwith\nsome\nsuch\nwords\nlonger\nhippopotamus\nantidisestablishmentarianism\n";
 
-        // Write input to file
+        // Записати вхідну стрічку до файлу
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/com/beginsecure/domain/input.txt"));
         writer.write(input);
         writer.close();
 
-        // Run main method
+        // Записати вхідну стрічку до файлу
         Main.main(new String[]{});
 
-        // Read output from file
+        // Прочитати вихідні дані з файлу
         List<String> actualOutput = Files.readAllLines(Path.of("src/main/java/com/beginsecure/domain/output.txt"));
 
-        // Assert that output contains distinct words sorted by length
+        // Перевірити, що вихідна послідовність містить унікальні слова, відсортовані за довжиною
         assertThat(actualOutput, Matchers.contains(expectedOutput.split("\n")));
 
-        // Assert that output is not empty
+        // Перевірити, що вихідна послідовність не є порожньою
         assertThat(actualOutput, Matchers.not(empty()));
 
-        // Assert that output has size 13
+        // Перевірити, що розмір вихідної послідовності дорівнює 13
         assertThat(actualOutput, hasSize(13));
 
     }
