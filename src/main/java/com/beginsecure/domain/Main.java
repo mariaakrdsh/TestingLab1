@@ -31,9 +31,13 @@ public class Main {
         Scanner inputFile = null;
         String filePath;
         String nextLine;
+
         try {
             userPathInput.close();
             inputFile = new Scanner(Paths.get("/Users/mariakardas/Desktop/Laboratory/src/main/java/com/beginsecure/domain/input.txt"));
+            if (!inputFile.hasNext()) { // Check if file is empty
+                throw new IOException("Input file is empty");
+            }
             while (inputFile.hasNext()) {
                 nextLine = inputFile.nextLine();
                 if(nextLine.isEmpty()) {
@@ -69,5 +73,4 @@ public class Main {
             System.out.println("Something is wrong\n");
         }
     }
-
 }
